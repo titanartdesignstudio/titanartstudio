@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
+/* =========================
+   ROOT COLORS
+========================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #020617;
+  --gold: #d4af37;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =========================
+   BODY BACKGROUND
+========================= */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(6, 78, 59, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.15), transparent 40%),
+    var(--bg);
+
+  color: white;
+  overflow-x: hidden; /* ✅ FIX SIDE SCROLL ISSUE */
+}
+
+/* =========================
+   SMOOTH TEXT
+========================= */
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   BACKGROUND MOTION (ENHANCED)
+========================= */
+@keyframes bgMove {
+  0% { transform: translate(0px, 0px); }
+  50% { transform: translate(30px, 20px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.bg-motion::before {
+  content: "";
+  position: fixed;
+  inset: -200px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(212,175,55,0.06), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(6,78,59,0.12), transparent 40%);
+  animation: bgMove 25s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* =========================
+   NOISE TEXTURE (PREMIUM)
+========================= */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.025;
+  pointer-events: none;
+}
+
+/* =========================
+   MARQUEE (SMOOTH + PREMIUM)
+========================= */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* =========================
+   🔥 FINAL SPACING SYSTEM (FIXED)
+========================= */
+
+/* Base section */
+section {
+  margin: 0;
+  padding: 72px 0;
+  position: relative;
+}
+
+/* HERO */
+section:first-of-type {
+  padding-top: 140px;
+  padding-bottom: 60px;
+}
+
+/* CLIENT STRIP (tight but balanced) */
+section:nth-of-type(2) {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+/* SERVICES */
+section:nth-of-type(3) {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/* STATS */
+section:nth-of-type(4) {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/* CTA */
+section:last-of-type {
+  padding-top: 100px;
+  padding-bottom: 120px;
+}
+
+/* =========================
+   DIVIDER (SOFT GOLD LINE)
+========================= */
+section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(212, 175, 55, 0.15),
+    transparent
+  );
+}
+
+/* =========================
+   SCROLL REVEAL (SMOOTH)
+========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   STAGGER EFFECT (PREMIUM FEEL)
+========================= */
+.reveal:nth-child(1) { transition-delay: 0.05s; }
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.15s; }
+.reveal:nth-child(4) { transition-delay: 0.2s; }
+
+/* =========================
+   GLOBAL FIXES
+========================= */
+
+/* remove weird spacing issues */
+section > div {
+  margin-top: 0 !important;
+}
+
+/* fix button glow overflow */
+button {
+  position: relative;
+  z-index: 1;
+}
+
+/* FLOATING PARTNER LOGOS */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
