@@ -31,12 +31,11 @@ export const metadata: Metadata = {
   authors: [{ name: "TitanArtStudio" }],
   creator: "TitanArtStudio",
 
-  metadataBase: new URL("https://titanartstudio.in"), // ✅ YOUR DOMAIN
+  metadataBase: new URL("https://titanartstudio.in"),
 
   openGraph: {
     title: "TitanArtStudio",
-    description:
-      "Building global digital systems for brands that lead.",
+    description: "Building global digital systems for brands that lead.",
     url: "https://titanartstudio.in",
     siteName: "TitanArtStudio",
     images: [
@@ -54,8 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "TitanArtStudio",
-    description:
-      "Premium Web Design & Development Agency",
+    description: "Premium Web Design & Development Agency",
     images: ["/icon.png"],
   },
 
@@ -70,6 +68,7 @@ export const metadata: Metadata = {
     follow: true,
   },
 }
+
 export default function RootLayout({
   children,
 }: {
@@ -87,18 +86,18 @@ export default function RootLayout({
         `}
       >
 
-        {/* ✅ background */}
+        {/* ✅ global background */}
         <div className="fixed inset-0 -z-10 bg-motion pointer-events-none" />
 
-        {/* ✅ reveal (DO NOT WRAP) */}
+        {/* ✅ reveal animations */}
         <RevealProvider />
 
         {/* ✅ main content */}
-        <main>
+        <main className="relative z-10">
           {children}
         </main>
 
-        {/* ✅ assistant */}
+        {/* ✅ floating assistant */}
         <Assistant />
 
       </body>

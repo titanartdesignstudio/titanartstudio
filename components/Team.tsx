@@ -46,33 +46,33 @@ function getInitials(name: string) {
 
 export default function Team() {
   return (
-    <section className="relative px-6 py-24 reveal">
+    <section className="relative px-4 sm:px-6 py-16 sm:py-20 lg:py-24 reveal overflow-hidden">
 
       {/* glow */}
       <div className="absolute inset-0 -z-10 opacity-30">
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[200px] bg-[#d4af37]/10 blur-[120px]" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[350px] sm:w-[600px] h-[150px] sm:h-[200px] bg-[#d4af37]/10 blur-[100px] sm:blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto">
 
         {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-tight">
             Core <span className="text-[#d4af37]">Team</span>
           </h2>
-          <p className="text-gray-400 mt-3">
+          <p className="text-gray-400 text-sm sm:text-base mt-2 sm:mt-3 px-2 sm:px-0">
             Leadership driving innovation and execution.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
 
           {team.map((member, i) => (
             <div
               key={i}
               className="
-                group relative p-6 rounded-2xl
+                group relative p-4 sm:p-5 lg:p-6 rounded-2xl
                 border border-white/10
                 bg-white/5 backdrop-blur-xl
                 text-center
@@ -88,10 +88,12 @@ export default function Team() {
             >
 
               {/* AVATAR */}
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full 
+              <div className="
+                w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                mx-auto mb-3 sm:mb-4 rounded-full 
                 flex items-center justify-center
                 bg-gradient-to-br from-[#d4af37] to-yellow-600
-                text-black font-semibold text-lg
+                text-black font-semibold text-sm sm:text-base md:text-lg
                 shadow-[0_0_20px_rgba(212,175,55,0.3)]
                 group-hover:scale-110 transition
               ">
@@ -99,12 +101,12 @@ export default function Team() {
               </div>
 
               {/* NAME */}
-              <h3 className="font-semibold text-sm leading-tight">
+              <h3 className="font-semibold text-xs sm:text-sm leading-tight">
                 {member.name}
               </h3>
 
               {/* ROLE */}
-              <p className="text-xs text-gray-400 mt-2 leading-snug">
+              <p className="text-[10px] sm:text-xs text-gray-400 mt-1 sm:mt-2 leading-snug">
                 {member.role}
               </p>
 

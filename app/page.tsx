@@ -8,6 +8,8 @@ import Customers from "@/components/customers"
 import Footers from "@/components/footers"
 import Team from "@/components/Team"
 import Partners from "@/components/Partners"
+import Portfolio from "@/components/portfolio"
+
 export default function Home() {
   return (
     <>
@@ -17,15 +19,36 @@ export default function Home() {
       {/* Main Content */}
       <main className="overflow-x-hidden">
 
+        {/* HERO */}
         <Hero />
-<Customers />
- <About />
- <Partners />
-<Services />
-          <Stats />
-          <Team/>
+
+        {/* TRUST (logos first = credibility) */}
+        <Customers />
+
+        {/* ABOUT */}
+        <About />
+
+        {/* SERVICES */}
+        <Services />
+
+        {/* PORTFOLIO (IMPORTANT - missing tha) */}
+        <Portfolio />
+
+        {/* STATS */}
+        <Stats />
+
+        {/* TEAM */}
+        <Team />
+
+        {/* TECH PARTNERS */}
+        <Partners />
+
+        {/* CTA */}
         <CTA />
-<Footers/>
+
+        {/* FOOTER */}
+        <Footers />
+
       </main>
     </>
   )

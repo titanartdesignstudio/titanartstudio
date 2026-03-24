@@ -27,28 +27,28 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative py-24 px-6 reveal">
+    <section className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 reveal overflow-hidden">
 
       {/* 🔥 subtle animated glow */}
       <div className="absolute inset-0 -z-10 opacity-30">
-        <div className="absolute right-1/2 top-0 translate-x-1/2 w-[600px] h-[200px] bg-[#d4af37]/10 blur-[120px]" />
+        <div className="absolute right-1/2 top-0 translate-x-1/2 w-[400px] sm:w-[600px] h-[150px] sm:h-[200px] bg-[#d4af37]/10 blur-[100px] sm:blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto">
 
         {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 sm:mb-4 tracking-tight">
             Our Services
           </h2>
 
-          <p className="text-white/60 max-w-xl mx-auto">
+          <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto px-2 sm:px-0">
             We provide end-to-end digital solutions to help brands scale globally.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
 
           {services.map((service, i) => {
             const Icon = service.icon
@@ -58,7 +58,7 @@ export default function Services() {
                 key={i}
                 className="
                   group relative overflow-hidden
-                  p-7 rounded-2xl 
+                  p-5 sm:p-6 lg:p-7 rounded-2xl 
                   border border-white/10 
                   bg-white/5 backdrop-blur-xl
                   transition duration-300
@@ -87,18 +87,18 @@ export default function Services() {
 
                 {/* Icon */}
                 <Icon className="
-                  w-7 h-7 text-[#d4af37] mb-5 
+                  w-6 h-6 sm:w-7 sm:h-7 text-[#d4af37] mb-4 sm:mb-5 
                   transition duration-300
                   group-hover:scale-110 group-hover:rotate-3
                 " />
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="text-base sm:text-lg font-semibold mb-2">
                   {service.title}
                 </h3>
 
                 {/* Desc */}
-                <p className="text-white/60 text-sm leading-relaxed">
+                <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
                   {service.desc}
                 </p>
 
