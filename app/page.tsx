@@ -30,6 +30,10 @@ export default function Home() {
 
         {/* SERVICES */}
         <Services />
+        
+      {/* PARNERS */}
+        <Partners />
+
 
         {/* PORTFOLIO (IMPORTANT - missing tha) */}
         <Portfolio />
@@ -39,9 +43,7 @@ export default function Home() {
 
         {/* TEAM */}
         <Team />
-
-        {/* TECH PARTNERS */}
-        <Partners />
+       
 
         {/* CTA */}
         <CTA />
