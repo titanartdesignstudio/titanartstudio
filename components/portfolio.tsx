@@ -1,21 +1,27 @@
 "use client"
 
+import Image from "next/image"
+
 const projects = [
   {
     title: "E-Commerce Platform",
     category: "Web Development",
+    image: "/portfolio/webdesign.png",
   },
   {
     title: "Fintech Mobile App",
     category: "Mobile App",
+    image: "/portfolio/mobileapp.png",
   },
   {
     title: "Brand Identity Design",
     category: "UI/UX Design",
+    image: "/portfolio/ui.png",
   },
   {
     title: "SaaS Dashboard",
     category: "Web App",
+    image: "/portfolio/startup.png",
   },
 ]
 
@@ -44,18 +50,38 @@ export default function Portfolio() {
                 group relative 
                 h-52 sm:h-60 md:h-64 
                 rounded-xl border border-white/10 
-                bg-white/5 backdrop-blur-md 
                 overflow-hidden 
-                hover:bg-white/10 
                 transition duration-300
+                hover:scale-[1.02]
               "
             >
-              {/* overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-90" />
 
-              {/* content */}
-              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 pr-4">
-                <p className="text-xs sm:text-sm text-white/60 mb-1">
+              {/* IMAGE */}
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="
+                  object-cover
+                  transition duration-500
+                  group-hover:scale-110
+                "
+              />
+
+              {/* DARK OVERLAY */}
+              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition" />
+
+              {/* GOLD HOVER GLOW */}
+              <div className="
+                absolute inset-0 opacity-0 
+                group-hover:opacity-100 
+                transition duration-500 
+                bg-gradient-to-br from-[#d4af37]/20 via-transparent to-transparent
+              " />
+
+              {/* CONTENT */}
+              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 pr-4 z-10">
+                <p className="text-xs sm:text-sm text-white/70 mb-1">
                   {project.category}
                 </p>
                 <h3 className="text-base sm:text-lg md:text-xl font-semibold leading-tight">
@@ -63,8 +89,6 @@ export default function Portfolio() {
                 </h3>
               </div>
 
-              {/* hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent" />
             </div>
           ))}
 
