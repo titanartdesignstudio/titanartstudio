@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import RevealProvider from "@/components/RevealProvider"
 import Assistant from "@/components/Assistant"
+import { Toaster } from "react-hot-toast"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -86,19 +87,31 @@ export default function RootLayout({
         `}
       >
 
-        {/* ✅ global background */}
+        {/* 🔥 GLOBAL BACKGROUND (SMOOTH + PREMIUM) */}
         <div className="fixed inset-0 -z-10 bg-motion pointer-events-none" />
 
-        {/* ✅ reveal animations */}
+        {/* 🔥 REVEAL SYSTEM */}
         <RevealProvider />
 
-        {/* ✅ main content */}
+        {/* 🔥 MAIN CONTENT */}
         <main className="relative z-10">
           {children}
         </main>
 
-        {/* ✅ floating assistant */}
+        {/* 🔥 FLOATING ASSISTANT */}
         <Assistant />
+
+        {/* 🔥 TOAST SYSTEM (IMPORTANT) */}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#0b0f19",
+              color: "#fff",
+              border: "1px solid rgba(255,255,255,0.1)",
+            },
+          }}
+        />
 
       </body>
     </html>

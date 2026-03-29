@@ -33,37 +33,7 @@ export default function Hero() {
           and broadcast systems trusted by global brands.
         </p>
 
-        {/* Buttons */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
-
-          <button
-            className="
-            w-full sm:w-auto
-            px-6 sm:px-8 py-3 rounded-full 
-            bg-[#d4af37] text-black font-medium
-            hover:bg-[#b8962e] 
-            transition duration-200
-            shadow-[0_10px_30px_rgba(212,175,55,0.25)]
-          "
-          >
-            Get Started →
-          </button>
-
-          <button
-            className="
-            w-full sm:w-auto
-            px-6 sm:px-8 py-3 rounded-full 
-            border border-white/10 bg-white/5 
-            hover:bg-white/10 
-            backdrop-blur-md
-            transition duration-200
-          "
-          >
-            View Work
-          </button>
-
-        </div>
-
+       
       </div>
     </section>
   )
