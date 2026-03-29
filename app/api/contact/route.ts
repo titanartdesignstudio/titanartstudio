@@ -2,39 +2,66 @@ import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
+// ✅ FORCE NODE RUNTIME (VERY IMPORTANT FOR VERCEL)
+export const runtime = "nodejs"
+
+// ✅ SAFE INIT (no crash during build)
+const resend = new Resend(process.env.RESEND_API_KEY || "")
 
 export async function POST(req: Request) {
   try {
+    // ✅ ENV CHECK (prevents build/runtime crash)
+    if (!process.env.RESEND_API_KEY) {
+      console.error("❌ RESEND_API_KEY missing")
+      return NextResponse.json(
+        { error: "Email service not configured" },
+        { status: 500 }
+      )
+    }
+
+    if (!process.env.MONGODB_URI) {
+      console.error("❌ MONGODB_URI missing")
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 500 }
+      )
+    }
+
     const body = await req.json()
 
-    const name = body.name || ""
-    const email = body.email || ""
-    const message = body.message || ""
+    const name = body.name?.trim()
+    const email = body.email?.trim()
+    const message = body.message?.trim() || ""
 
+    // ✅ VALIDATION
     if (!name || !email) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Name & Email required" },
         { status: 400 }
       )
     }
 
-    const client = await clientPromise
-    const db = client.db("titan")
+    // ✅ DB SAVE (safe)
+    try {
+      const client = await clientPromise
+      const db = client.db("titan")
 
-    // 🔥 SAVE TO DB
-    await db.collection("contacts").insertOne({
-      name,
-      email,
-      message,
-      createdAt: new Date(),
-    })
+      await db.collection("contacts").insertOne({
+        name,
+        email,
+        message,
+        createdAt: new Date(),
+      })
+    } catch (dbError) {
+      console.error("❌ DB ERROR:", dbError)
+      // continue execution (email still works)
+    }
 
-    // 🔥 ADMIN EMAIL
+    // ✅ ADMIN EMAIL
     await resend.emails.send({
       from: "Titan Art Studio <info@titanartstudio.in>",
       to: ["info@titanartstudio.in"],
-      replyTo: email, // ✅ FIXED
+      replyTo: email,
       subject: `🚀 New Lead from ${name}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:25px;background:#0b0b0b;color:#fff;border-radius:12px">
@@ -58,7 +85,7 @@ export async function POST(req: Request) {
       `,
     })
 
-    // 🔥 AUTO REPLY
+    // ✅ AUTO REPLY
     await resend.emails.send({
       from: "Titan Art Studio <info@titanartstudio.in>",
       to: email,
@@ -96,7 +123,7 @@ export async function POST(req: Request) {
     })
 
   } catch (error) {
-    console.error("CONTACT API ERROR:", error)
+    console.error("❌ CONTACT API ERROR:", error)
 
     return NextResponse.json(
       { error: "Internal Server Error" },
